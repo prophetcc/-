@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = {
+            age: 123,
+            name: {
+                test: 'value',
+                heima: '123',
+                arr: [1, 32, {
+                    qls: 'name'
+                }],
+                nn: [23, 4, 5, 5]
+            },
+            js: '123'
+        };
+
+        function isObject(obj) {
+            return obj instanceof Object;
+        }
+
+        function deepCopy(obj) {
+            const target = Array.isArray(obj) ? [] : {};
+            for (const key in obj) {
+                target[key] = isObject(obj[key]) ? deepCopy(obj[key]) : obj[key];
+            }
+
+            return target;
+        }
+
+        const newObj = deepCopy(data);
+        console.log(newObj);
+    </script>
+</body>
+
+</html>

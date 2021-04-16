@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Father(money) {
+            this.money = money
+        }
+
+        Father.prototype.say = function () {
+            console.log('我姓陈');
+        }
+
+        function Son(money, grade) {
+            Father.call(this, money);
+            this.grade = grade;
+        }
+
+        // Son.prototype = new Father();
+        // Son.prototype.constructor = Son;
+
+        function create(obj) {
+            function f() { };
+            f.prototype = obj;
+            return new f();
+        }
+
+        Son.prototype = create(Father.prototype);
+        Son.prototype.constructor = Son;
+
+        // Son.prototype = Object.create(Father.prototype);
+        // Son.prototype.constructor = Son;
+
+        const p = new Son(100, 60);
+        console.log(p);
+        p.say()
+    </script>
+</body>
+
+</html>
