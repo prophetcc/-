@@ -26,17 +26,17 @@
         // Son.prototype = new Father();
         // Son.prototype.constructor = Son;
 
-        function create(obj) {
-            function f() { };
-            f.prototype = obj;
-            return new f();
-        }
+        // function create(obj) {
+        //     function f() { };
+        //     f.prototype = obj;
+        //     return new f();
+        // }
 
-        Son.prototype = create(Father.prototype);
-        Son.prototype.constructor = Son;
-
-        // Son.prototype = Object.create(Father.prototype);
+        // Son.prototype = create(Father.prototype);
         // Son.prototype.constructor = Son;
+
+        Son.prototype = Object.create(Father.prototype);
+        Son.prototype.constructor = Son;
 
         const p = new Son(100, 60);
         console.log(p);
