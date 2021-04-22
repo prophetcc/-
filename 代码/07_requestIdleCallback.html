@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <ul></ul>
+
+    <script>
+        const ul = document.querySelector('ul');
+
+        let index = 0;
+
+        function render(deadline) {
+            index++;
+            if (index > arr.length) return;
+            const li = document.createElement('li');
+            li.style.color = color16();
+            li.innerHTML = arr[index];
+            ul.appendChild(li);
+            if (deadline.timeRemaining > 1) {
+                render();
+            } else {
+                window.requestIdleCallback(render);
+            }
+        }
+
+        window.requestIdleCallback(render);
+
+        function color16() {
+            //十六进制颜色随机
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            var rgb = '(' + r + ',' + g + ',' + b + ')';
+            return `rgb${rgb}`;
+        }
+    </script>
+</body>
+
+</html>
